@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Home, FolderOpen, Edit3, Sparkles, FileText, Linkedin, Github } from "lucide-react"
 import Tooltip from "./Tooltip"
 
@@ -19,6 +19,108 @@ const FloatingNav = ({ aboutPicture = null }) => {
     { id: "linkedin", icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/arun-kumar-kushwaha-b26085286/", external: true },
     { id: "github", icon: Github, label: "GitHub", href: "https://github.com/ArunKushhhh", external: true },
   ]
+
+  // Get only the internal navigation items (exclude external links)
+  const internalNavItems = navItems.filter(item => !item.external)
+
+  // Intersection Observer to detect active section
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -80% 0px', // Adjust margins for better detection
+      threshold: [0, 0.1, 0.3, 0.5]
+    }
+
+    const observerCallback = (entries) => {
+      // Sort entries by intersection ratio (highest first)
+      const sortedEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+      
+      if (sortedEntries.length > 0) {
+        const mostVisible = sortedEntries[0]
+        const sectionId = mostVisible.target.id
+        setActiveSection(sectionId)
+      }
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    // Observe all internal sections
+    internalNavItems.forEach((item) => {
+      const element = document.querySelector(item.href)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  // Enhanced scroll-based detection as primary method
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.3
+      const windowHeight = window.innerHeight
+      
+      // Special handling for home section (top of page)
+      if (window.scrollY < windowHeight * 0.5) {
+        setActiveSection('home')
+        return
+      }
+
+      let activeSection = 'home'
+      let maxVisibleArea = 0
+
+      internalNavItems.forEach((item) => {
+        const element = document.querySelector(item.href)
+        
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          const elementTop = rect.top + window.scrollY
+          const elementBottom = elementTop + rect.height
+          const viewportTop = window.scrollY
+          const viewportBottom = viewportTop + windowHeight
+          
+          // Calculate visible area of the section
+          const visibleTop = Math.max(viewportTop, elementTop)
+          const visibleBottom = Math.min(viewportBottom, elementBottom)
+          const visibleArea = Math.max(0, visibleBottom - visibleTop)
+          
+          // Consider section active if it has the most visible area
+          if (visibleArea > maxVisibleArea && visibleArea > windowHeight * 0.1) {
+            maxVisibleArea = visibleArea
+            activeSection = item.id
+          }
+        }
+      })
+
+      setActiveSection(activeSection)
+    }
+
+    // Throttle scroll events for better performance
+    let ticking = false
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true })
+    
+    // Call once on mount to set initial active section
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll)
+    }
+  }, [])
 
   const handleNavClick = (item) => {
     if (item.external) {
