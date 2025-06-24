@@ -100,10 +100,10 @@ const Footer = () => {
               <MessageCircleMore size={14} />
             </a>
             <button
-              className="p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 flex justify-start items-center gap-2 cursor-pointer text-sm"
+              className="p-2 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 flex justify-start items-center gap-2 cursor-pointer text-sm"
             >
               <Phone size={14} />
-              <p className="inline-block">8619020789</p>
+              <p className="inline-block ">8619020789</p>
             </button>
           </div>
         </div>
