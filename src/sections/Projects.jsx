@@ -66,7 +66,7 @@ It thus empowers recruiters, contributors and Repository maintainers`,
       liveUrl: "",
       year: "2025",
       projectType: "Solo Project",
-      status: "Active",
+      status: "Production",
     },
     {
       id: 3,
