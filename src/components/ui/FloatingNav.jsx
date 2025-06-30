@@ -15,7 +15,7 @@ const FloatingNav = ({ aboutPicture = null }) => {
     { id: "projects", icon: FolderOpen, label: "Projects", href: "#projects" },
     { id: "skills", icon: Edit3, label: "Skills", href: "#skills" },
     { id: "about", label: "About", href: "#about", isPicture: true },
-    { id: "resume", icon: FileText, label: "Resume", href: "#resume" },
+    { id: "resume", icon: FileText, label: "Resume", href: "https://drive.google.com/file/d/1P_dij4oxqclU5uwDAHWwC-1lpd1XZlDO/view?usp=drive_link", external: true },
     { id: "linkedin", icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/arun-kumar-kushwaha-b26085286/", external: true },
     { id: "github", icon: Github, label: "GitHub", href: "https://github.com/ArunKushhhh", external: true },
   ]

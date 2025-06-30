@@ -37,7 +37,7 @@ const Footer = () => {
               <p>austen.dezigns.dev@gmail.com</p>
             </a>
             <a
-              href="https://www.instagram.com/imwfy_a/"
+              href="https://drive.google.com/file/d/1P_dij4oxqclU5uwDAHWwC-1lpd1XZlDO/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-black px-8 py-4 rounded-full font-medium cursor-pointer flex items-center gap-2 justify-center"
