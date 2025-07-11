@@ -36,7 +36,7 @@ const DeveloperSquiggle = () => {
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       {/* Title */}
-      <div className="absolute top-16 right-52 bg-[#1c1c1c] backdrop-blur-sm border-t-[0.5px] border-white shadow-[inset_0px_4px_6px_rgba(255,255,255,0.6)] hover:shadow-[inset_0px_2px_4px_rgba(255,255,255,0.6)]  rounded-2xl px-6 py-4">
+      <div className="absolute top-16 md:right-52 bg-[#1c1c1c] backdrop-blur-sm border-t-[0.5px] border-white shadow-[inset_0px_4px_6px_rgba(255,255,255,0.6)] hover:shadow-[inset_0px_2px_4px_rgba(255,255,255,0.6)]  rounded-2xl px-6 py-4">
         <h2 className="text-2xl md:text-3xl font-light text-gray-300">
           The Full Stack
         </h2>
@@ -61,7 +61,7 @@ const DeveloperSquiggle = () => {
         </div>
 
         {/* Labels positioned over the squiggle */}
-        <div className="absolute inset-0 flex items-center font-polaroid">
+        <div className="hidden absolute inset-0 lg:flex items-center font-polaroid">
           <div
             ref={addToRefs}
             className="absolute left-[17%] -top-32 text-center"
@@ -122,7 +122,7 @@ const DeveloperSquiggle = () => {
       </div>
 
       {/* Bottom description */}
-      <div className="absolute bottom-16 left-52 max-w-md">
+      <div className="absolute bottom-16 text-center md:text-left md:left-52 max-w-md">
         <p className="text-gray-500 text-sm leading-relaxed">
           The development process isn't linear. It starts chaotic with scattered
           requirements and ideas, gradually becomes more structured through

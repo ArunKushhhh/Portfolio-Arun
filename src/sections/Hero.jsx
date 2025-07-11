@@ -82,18 +82,18 @@ const Hero = () => {
           <div className="flex flex-col gap-4">
             <h1
               ref={titleRef}
-              className="text-4xl md:text-6xl lg:text-9xl text-white font-playball"
+              className="text-7xl text-center lg:text-9xl text-white font-playball"
             >
-              I develop <span className="italic text-blue-400">moments,</span>{" "}
-              <span className="italic text-blue-400">decisions,</span> and{" "}
-              <span className="italic text-blue-400">defaults</span>.
+              I develop <span className="text-blue-400">moments,</span>{" "}
+              <span className="text-blue-400">decisions,</span> and{" "}
+              <span className="text-blue-400">defaults</span>.
             </h1>
 
             <p
               ref={subtitleRef}
               className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto"
             >
-              <ShinyText className="text-lg md:text-xl">
+              <ShinyText className="text-sm md:text-xl">
                 No fluff. No Noise. Just Intentional Coding.
               </ShinyText>
             </p>
@@ -113,14 +113,14 @@ const Hero = () => {
               href="mailto:austen.dezigns.dev@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-black px-8 py-3 rounded-full font-medium cursor-pointer transition-all duration-300 hover:scale-105"
+              className="bg-white text-black px-8 py-3 rounded-full font-medium cursor-pointer transition-all duration-300 hover:scale-105 flex justify-center items-center"
             >
               Say Hi!
             </a>
           </div>
 
           {/* Polaroid Photos Container */}
-          <div className="relative flex">
+          <div className="relative flex flex-wrap justify-center gap-2">
             {polaroidImages.map((polaroid, index) => (
               <PolaroidCard
                 key={index}

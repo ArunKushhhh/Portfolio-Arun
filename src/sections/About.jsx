@@ -78,49 +78,87 @@ const BentoGrid = () => {
 
   return (
     <section id="about" className="min-h-screen bg-black py-20">
-      <div className="container mx-auto px-8 max-w-7xl">
-        {/* Bento Grid */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-6 auto-rows-auto lg:grid-rows-6"
-          style={{
-            gridTemplateRows: "auto auto auto auto",
-          }}
-        >
-          {/* Top Row - Stats Cards */}
-          {statsData.map((stat, index) => (
-            <div key={stat.label} ref={addToRefs} className="lg:col-span-1">
-              <StatsCard {...stat} />
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+        {/* Mobile Layout - Single Column */}
+        <div className="block lg:hidden">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            {/* Stats Cards Row */}
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+              {statsData.map((stat, index) => (
+                <div key={stat.label} ref={addToRefs}>
+                  <StatsCard {...stat} />
+                </div>
+              ))}
             </div>
-          ))}
 
-          {/* GitHub Contribution Graph - Merged top right section */}
-          <div ref={addToRefs} className="lg:col-span-4 lg:row-span-2">
-            <div className="h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-gray-700/50 transition-all duration-300">
-              <div className="">
+            {/* Profile Card */}
+            <div ref={addToRefs}>
+              <ProfileCard />
+            </div>
+
+            {/* GitHub Contribution Graph */}
+            <div ref={addToRefs}>
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-4 sm:p-6 hover:border-gray-700/50 transition-all duration-300">
                 <ContributionGraph username="ArunKushhhh" />
               </div>
             </div>
-          </div>
 
-          {/* Second Row - Profile Card */}
-          <div ref={addToRefs} className="lg:col-span-3 lg:row-span-2">
-            <ProfileCard />
-          </div>
+            {/* Online Presence */}
+            <div ref={addToRefs}>
+              <OnlinePresence />
+            </div>
 
-          {/* Second Row - Testimonials */}
-          <div ref={addToRefs} className="lg:col-span-2 lg:row-span-3">
-            <OnlinePresence />
-          </div>
+            {/* Contact Card */}
+            <div ref={addToRefs}>
+              <ContactCard type="telegram" />
+            </div>
 
-          {/* Third Row - Contact Cards */}
-          <div ref={addToRefs} className="lg:col-span-2 lg:row-span-3">
-            <ContactCard type="telegram" />
+            {/* Workflow Card */}
+            <div ref={addToRefs}>
+              <WorkflowCard />
+            </div>
           </div>
+        </div>
 
-          {/* Third Row - Workflow */}
-          <div ref={addToRefs} className="lg:col-span-3 lg:row-span-2">
-            <WorkflowCard />
+        {/* Desktop Layout - Bento Grid */}
+        <div className="hidden lg:block">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-6 auto-rows-min"
+          >
+            {/* Top Row - Stats Cards */}
+            {statsData.map((stat, index) => (
+              <div key={stat.label} ref={addToRefs} className="lg:col-span-1">
+                <StatsCard {...stat} />
+              </div>
+            ))}
+
+            {/* GitHub Contribution Graph - Merged top right section */}
+            <div ref={addToRefs} className="lg:col-span-4 lg:row-span-2">
+              <div className="h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-gray-700/50 transition-all duration-300">
+                <ContributionGraph username="ArunKushhhh" />
+              </div>
+            </div>
+
+            {/* Second Row - Profile Card */}
+            <div ref={addToRefs} className="lg:col-span-3 lg:row-span-2">
+              <ProfileCard />
+            </div>
+
+            {/* Second Row - Online Presence */}
+            <div ref={addToRefs} className="lg:col-span-2 lg:row-span-3">
+              <OnlinePresence />
+            </div>
+
+            {/* Third Row - Contact Cards */}
+            <div ref={addToRefs} className="lg:col-span-2 lg:row-span-3">
+              <ContactCard type="telegram" />
+            </div>
+
+            {/* Third Row - Workflow */}
+            <div ref={addToRefs} className="lg:col-span-3 lg:row-span-2">
+              <WorkflowCard />
+            </div>
           </div>
         </div>
       </div>
