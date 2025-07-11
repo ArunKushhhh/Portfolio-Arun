@@ -47,7 +47,7 @@ It thus empowers recruiters, contributors and Repository maintainers`,
     },
     {
       id: 2,
-      title: "Trelloq",
+      title: "TaskPro",
       description:
         "A sleek, modern, and fully responsive project management dashboard built with React, Vite, TypeScript, Tailwind CSS v4, and Shadcn UI, backed by a Node.js + Express API backend and a MongoDB database. The app enables users to manage workspaces, projects, and tasks with full support for collaboration—including comments, mentions, reactions, and detailed activity logs. Key features include user profile management, real-time notifications, and comprehensive authentication with email verification, 2FA, and password recovery options. Users can organize archived projects and tasks, attach files or external links, and stay productive across devices thanks to a fully responsive design.",
       tags: [
@@ -72,7 +72,7 @@ It thus empowers recruiters, contributors and Repository maintainers`,
       id: 3,
       title: "JARVIS",
       description:
-        "Inspired by Iron Man’s iconic assistants JARVIS and FRIDAY, JARVIS is a voice-enabled AI agent built with Python and powered by LiveKit, an open-source platform for real-time voice, video, and multimodal AI experiences. Leveraging the Gemini API, this intelligent assistant can browse the internet via DuckDuckGo, check real-time weather in any city, and send personalized emails on your behalf. LiveKit enables seamless audio interaction, while WebRTC powers the real-time infrastructure. JARVIS blends AI, voice control, and utility features into one smart, responsive agent—bringing sci-fi closer to real life.",
+        "Inspired by Iron Man's iconic assistants JARVIS and FRIDAY, JARVIS is a voice-enabled AI agent built with Python and powered by LiveKit, an open-source platform for real-time voice, video, and multimodal AI experiences. Leveraging the Gemini API, this intelligent assistant can browse the internet via DuckDuckGo, check real-time weather in any city, and send personalized emails on your behalf. LiveKit enables seamless audio interaction, while WebRTC powers the real-time infrastructure. JARVIS blends AI, voice control, and utility features into one smart, responsive agent—bringing sci-fi closer to real life.",
       tags: ["Python", "Livekit", "Gemini API", "Weather API", "DuckDuckGo"],
       images: [
         "/assets/projects/jarvis/code.png",
@@ -150,7 +150,9 @@ It thus empowers recruiters, contributors and Repository maintainers`,
     if (!container || !cardsContainer || !section) return;
 
     // Set up horizontal scroll
-    const totalWidth = projectsData.length * window.innerWidth;
+    const viewportWidth = window.innerWidth;
+    const totalWidth = projectsData.length * viewportWidth;
+    const scrollDistance = totalWidth - viewportWidth;
 
     // Set the width of the cards container
     gsap.set(cardsContainer, {
@@ -162,13 +164,13 @@ It thus empowers recruiters, contributors and Repository maintainers`,
     ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: () => `+=${totalWidth}`,
+      end: () => `+=${scrollDistance}`,
       pin: true,
       scrub: 1,
       anticipatePin: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        const moveX = -progress * (totalWidth - window.innerWidth);
+        const moveX = -progress * scrollDistance;
 
         gsap.set(cardsContainer, {
           x: moveX,
@@ -176,8 +178,16 @@ It thus empowers recruiters, contributors and Repository maintainers`,
       },
     });
 
+    // Handle resize
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+
     // Cleanup
     return () => {
+      window.removeEventListener('resize', handleResize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [projectsData.length]);
@@ -186,25 +196,23 @@ It thus empowers recruiters, contributors and Repository maintainers`,
     <section
       ref={sectionRef}
       id="projects"
-      className="min-h-screen bg-black flex flex-col"
+      className="min-h-screen bg-black py-20"
     >
       {/* Section Header - Fixed */}
-      <div className="relative z-20 mt-14">
-        <div className="container mx-auto">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-8xl text-white mb-6 font-playball">
-              {">>"} Featured{" "}
-              <span className="italic text-blue-400">Projects</span>
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Side quests that became power moves.
-            </p>
-          </div>
+      <div className="container mx-auto px-8 max-w-7xl">
+        <div className="mb-16 flex flex-col gap-6">
+          <h2 className="text-7xl md:text-8xl text-white font-playball">
+            {">>"} Featured{" "}
+            <span className="text-blue-400">Projects</span>
+          </h2>
+          <p className="text-gray-500 text-base">
+            Side quests that became power moves.
+          </p>
         </div>
       </div>
 
       {/* Horizontal Scroll Container */}
-      <div ref={containerRef} className="relative overflow-hidden my-14">
+      <div ref={containerRef} className="relative overflow-hidden">
         <div
           ref={cardsContainerRef}
           className="flex"
@@ -223,15 +231,17 @@ It thus empowers recruiters, contributors and Repository maintainers`,
         </div>
       </div>
 
-      <a
-        href="https://github.com/ArunKushhhh?tab=repositories"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="self-center p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 flex justify-center items-center gap-2 cursor-pointer"
-      >
-        <Github size={20} />
-        <p>View More Projects</p>
-      </a>
+      <div className="container mx-auto px-8 max-w-7xl mt-16 flex justify-center">
+        <a
+          href="https://github.com/ArunKushhhh?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 items-center gap-2 cursor-pointer"
+        >
+          <Github size={20} />
+          <p>View More Projects</p>
+        </a>
+      </div>
     </section>
   );
 };

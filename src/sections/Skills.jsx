@@ -135,10 +135,10 @@ const Skills = () => {
         <div className="mb-16 flex flex-col gap-6">
           <h2
             ref={titleRef}
-            className="text-4xl md:text-8xl text-white  font-playball"
+            className="text-7xl md:text-8xl text-white  font-playball"
           >
             {">>"} My
-            <span className="italic text-blue-400"> Skills</span>
+            <span className=" text-blue-400"> Skills</span>
           </h2>
           <p className="text-gray-500 text-base">
             Tools I don’t just list—I wield.
@@ -158,7 +158,7 @@ const Skills = () => {
               <div className="flex flex-wrap gap-x-2 gap-y-1 mb-8">
                 {category.skills.map((skill, skillIndex) => (
                   <span key={skill} className="group/skill">
-                    <span className="text-white font-light hover:text-blue-400 transition-colors duration-300 cursor-default">
+                    <span className="text-white font-light hover:text-blue-400 transition-colors duration-300 cursor-default text-sm md:text-base">
                       {skill}
                     </span>
                     {skillIndex < category.skills.length - 1 && (

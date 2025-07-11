@@ -26,7 +26,7 @@ const DigitalClock = () => {
   return (
     <div className="fixed top-12 left-12 z-50 flex items-center gap-2 text-gray-400">
       <Clock size={20} />
-      <span className="font-mono text-lg">{formatTime(time)}</span>
+      <span className="font-mono text-sm md:text-lg">{formatTime(time)}</span>
     </div>
   )
 }

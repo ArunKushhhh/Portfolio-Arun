@@ -150,10 +150,10 @@ const Experience = () => {
         <div className="mb-16 flex flex-col gap-6">
           <h2
             ref={titleRef}
-            className="text-4xl md:text-8xl text-white  font-playball"
+            className="text-7xl md:text-8xl text-white  font-playball"
           >
             {">>"} My
-            <span className="italic text-blue-400"> Experience</span>
+            <span className="text-blue-400"> Experience</span>
           </h2>
           <p className="text-gray-500 text-base">
             Where learning met doing—and deadlines were just the start.
@@ -166,16 +166,16 @@ const Experience = () => {
             <div key={experience.id} ref={addToRefs} className="group">
               {/* Accordion Header */}
               <div
-                className="flex justify-between items-center py-6 cursor-pointer transition-colors duration-300 rounded-lg"
+                className="flex justify-between items-start py-6 cursor-pointer transition-colors duration-300 rounded-lg"
                 onClick={() => toggleAccordion(experience.id)}
               >
                 {/* Left Side - Role */}
                 <div className="flex items-center gap-4">
-                  <h3 className="text-3xl text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <h3 className="text-lg md:text-3xl text-white group-hover:text-blue-400 transition-colors duration-300">
                     {experience.role}
                   </h3>
                   <ChevronDown
-                    className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${
+                    className={`hidden md:flex w-5 h-5 text-gray-400 transition-transform duration-300 ${
                       activeAccordion === experience.id ? "rotate-180" : ""
                     }`}
                   />
@@ -183,10 +183,10 @@ const Experience = () => {
 
                 {/* Right Side - Company & Duration */}
                 <div className="text-right flex flex-col gap-1 items-end">
-                  <div className="text-gray-400 group-hover:text-white text-xl">
+                  <div className="text-gray-400 group-hover:text-white text-base md:text-xl">
                     {experience.company}
                   </div>
-                  <div className="text-gray-500 text-sm flex items-center gap-2">
+                  <div className="text-gray-500 text-xs md:text-sm flex items-center gap-2">
                     <Calendar size={16} />
                     {experience.duration}
                   </div>
@@ -197,14 +197,14 @@ const Experience = () => {
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   activeAccordion === experience.id
-                    ? "max-h-96 opacity-100 pb-6"
+                    ? "max-h-[500px] opacity-100 pb-6"
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-6 space-y-6">
+                <div className="md:px-6 space-y-6">
                   {/* Work Type */}
                   <div>
-                    <span className="inline-block bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-light">
+                    <span className="inline-block bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full  text-xs md:text-sm font-light">
                       {experience.type}
                     </span>
                   </div>
@@ -231,7 +231,7 @@ const Experience = () => {
                     <h4 className="text-gray-400 text-sm font-light mb-3 uppercase tracking-wider">
                       Key Achievements
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 text-sm md:text-base">
                       {experience.keyPoints.map((point, pointIndex) => (
                         <li
                           key={pointIndex}
