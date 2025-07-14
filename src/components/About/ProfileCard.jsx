@@ -87,7 +87,7 @@ const ProfileCard = () => {
           className="w-full p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 flex justify-start items-center gap-2 cursor-pointer text-sm"
         >
           <MessageCircleMore size={20} />
-          <p> <span className="hidden md:flex">Say Hii on</span>{" "}WhatsApp!</p>
+          <p> <span className="hidden md:inline-block">Say Hii on</span>{" "}WhatsApp!</p>
         </a>
       </div>
     </div>
