@@ -27,7 +27,9 @@ const ProfileCard = () => {
           <div className="flex flex-col items-start gap-2">
             <div className="flex gap-2 items-center justify-center px-2 py-1 rounded-full overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800/50">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <div className="text-[12px]">Available for work</div>
+              <div className="text-[10px] md:text-[12px]">
+                Available for work
+              </div>
             </div>
             <div className="text-xl">Arun Kushwaha</div>
             <div className="text-sm text-gray-500">
@@ -85,7 +87,7 @@ const ProfileCard = () => {
           className="w-full p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 flex justify-start items-center gap-2 cursor-pointer text-sm"
         >
           <MessageCircleMore size={20} />
-          <p>Say Hii on WhatsApp!</p>
+          <p> <span className="hidden md:flex">Say Hii on</span>{" "}WhatsApp!</p>
         </a>
       </div>
     </div>
